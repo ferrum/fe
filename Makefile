@@ -1,4 +1,4 @@
-WORKSPACE:=$(PWD)/workspace
+WORKSPACE:=$(PWD)/_workspace
 PACKAGE=github.com/ferrum/fe
 
 fe: workspace
