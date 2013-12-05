@@ -1,9 +1,10 @@
 WORKSPACE:=$(PWD)/_workspace
-PACKAGE=github.com/ferrum/fe
+PACKAGE:=github.com/ferrum/fe
+BINARY:=fe
 
-fe: project $(WORKSPACE)/src/$(PACKAGE)
+$(BINARY): project $(WORKSPACE)/src/$(PACKAGE)
 	GOPATH=$(WORKSPACE) go install $(PACKAGE)
-	cp $(WORKSPACE)/bin/fe .
+	cp $(WORKSPACE)/bin/$(BINARY) .
 	git checkout master
 
 project:
@@ -16,8 +17,8 @@ master:
 	git checkout master
 
 $(WORKSPACE)/src/github.com/ferrum/fe:
-	mkdir -p $(WORKSPACE)/src/github.com/ferrum/
+	mkdir -p $(WORKSPACE)/src/$(PACKAGE)
 	git clone https://$(PACKAGE).git $(WORKSPACE)/src/$(PACKAGE)
 
 clean:
-	rm -rf $(WORKSPACE) fe 
+	rm -rf $(WORKSPACE) $(BINARY)
