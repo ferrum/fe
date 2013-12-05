@@ -1,6 +1,9 @@
-WORKSPACE:=$(PWD)/_workspace
+# per-project info
 PACKAGE:=github.com/ferrum/fe
 BINARY:=fe
+
+# shouldn't probably change between projects
+WORKSPACE:=$(PWD)/_workspace
 
 $(BINARY): project $(WORKSPACE)/src/$(PACKAGE)
 	GOPATH=$(WORKSPACE) go install $(PACKAGE)
