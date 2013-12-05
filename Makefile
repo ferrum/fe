@@ -1,15 +1,17 @@
 WORKSPACE:=$(PWD)/workspace
 PACKAGE=github.com/ferrum/fe
 
-fe: $(WORKSPACE)/src/$(PACKAGE)
+fe: workspace
 	GOPATH=$(WORKSPACE) go install $(PACKAGE)
 	cp $(WORKSPACE)/bin/fe .
+
+workspace: $(WORKSPACE)/src/$(PACKAGE)
 
 $(WORKSPACE)/src/github.com/ferrum/fe:
 	mkdir -p $(WORKSPACE)/src/github.com/ferrum/
 	git clone https://$(PACKAGE).git $(WORKSPACE)/src/$(PACKAGE)
 
-activate:
+activate: workspace
 	@/bin/bash ./local.bash activate
 
 work: activate
