@@ -13,4 +13,4 @@ $(WORKSPACE)/src/github.com/ferrum/fe:
 	git clone https://$(PACKAGE).git $(WORKSPACE)/src/$(PACKAGE)
 
 clean:
-	rm -f $(WORKSPACE) fe 
+	rm -rf $(WORKSPACE) fe 
