@@ -5,6 +5,7 @@ fe: project $(WORKSPACE)/src/$(PACKAGE)
 	GOPATH=$(WORKSPACE) go install $(PACKAGE)
 	cp $(WORKSPACE)/bin/fe .
 	git checkout master
+
 project:
 	git checkout project
 
