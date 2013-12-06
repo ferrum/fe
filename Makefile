@@ -8,7 +8,7 @@ BRANCH:=$(shell git branch | grep '*' | awk '{print $$2'})
 
 $(BINARY): project $(WORKSPACE)/src/$(PACKAGE)
 	make
-	cp $(WORKSPACE)/$(BINARY) .
+#	cp $(WORKSPACE)/src/$(PACKAGE)/$(BINARY) .
 	git checkout $(BRANCH)
 
 project:
