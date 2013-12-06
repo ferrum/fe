@@ -10,6 +10,7 @@ $(BINARY): workspace
 	git checkout project
 	make
 	git checkout $(BRANCH)
+	@echo "Built binary at ./$(BINARY)"
 
 workspace: $(WORKSPACE)/src/$(PACKAGE)
 
