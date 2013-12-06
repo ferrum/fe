@@ -27,7 +27,7 @@ $(WORKSPACE)/src/github.com/ferrum/fe:
 	cd $(WORKSPACE)/src/$(PACKAGE) && \
        git remote rename origin project && \
 	   git remote add origin $(REMOTE) && \
-	   git branch -u origin/$(branch)
+	   git branch -u origin/$(BRANCH)
 
 clean:
 	rm -rf $(WORKSPACE) $(BINARY)
