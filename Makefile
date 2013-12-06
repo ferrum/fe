@@ -4,11 +4,11 @@ BINARY:=fe
 
 # shouldn't probably change between projects
 WORKSPACE:=$(PWD)/_workspace
-BRANCH:=$(shell git branch | grep '*' | awk '{print $$2'})
+BRANCH:=$(shell git branch | grep '^* ' | awk '{print $$2'})
 
-$(BINARY): project $(WORKSPACE)/src/$(PACKAGE)
+$(BINARY): $(WORKSPACE)/src/$(PACKAGE)
+	git checkout project
 	make
-#	cp $(WORKSPACE)/src/$(PACKAGE)/$(BINARY) .
 	git checkout $(BRANCH)
 
 project:
