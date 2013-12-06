@@ -8,8 +8,8 @@ REMOTE:=$(shell git remote -v | grep origin | grep push | awk '{print $$2}')
 BRANCH:=$(shell git branch | grep '*' | awk '{print $$2'})
 
 $(BINARY): project $(WORKSPACE)/src/$(PACKAGE)
-	GOPATH=$(WORKSPACE) go install $(PACKAGE)
-	cp $(WORKSPACE)/bin/$(BINARY) .
+	make
+	cp $(WORKSPACE)/$(BINARY) .
 	git checkout $(BRANCH)
 
 project:
