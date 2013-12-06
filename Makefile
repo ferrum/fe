@@ -6,7 +6,7 @@ BINARY:=fe
 WORKSPACE:=$(PWD)/_workspace
 BRANCH:=$(shell git branch | grep '^* ' | awk '{print $$2'})
 
-$(BINARY): $(WORKSPACE)/src/$(PACKAGE)
+$(BINARY): 
 	git checkout project
 	make
 	git checkout $(BRANCH)
