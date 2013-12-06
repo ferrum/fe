@@ -4,8 +4,7 @@ BINARY:=fe
 
 # shouldn't probably change between projects
 WORKSPACE:=$(PWD)/_workspace
-REMOTE:=$(shell git remote -v | grep origin | grep push | awk '{print $$2}')
-BRANCH:=$(shell git branch | grep '*' | awk '{print $$2'})
+BRANCH:=$(shell git branch git branch | sed -n '/\* /s///p')
 
 $(BINARY): project $(WORKSPACE)/src/$(PACKAGE)
 	make
