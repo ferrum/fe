@@ -34,12 +34,3 @@ clean:
 
 dist-clean: clean
 	rm -rf $(WORKSPACE) $(BINARY)
-
-project:
-	git checkout project
-
-go1:
-	git checkout go1
-
-master:
-	git checkout master
