@@ -26,7 +26,7 @@ $(WORKSPACE)/src/github.com/ferrum/fe:
 	git clone . $(WORKSPACE)/src/$(PACKAGE)
 	cd $(WORKSPACE)/src/$(PACKAGE) && \
 	   git checkout $(BRANCH) && \
-       git remote rename origin project && \
+	   git remote rename origin project && \
 	   git remote add -f origin $(REMOTE) && \
 	   git branch -u origin/$(BRANCH)
 
