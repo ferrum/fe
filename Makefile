@@ -6,10 +6,19 @@ BINARY:=fe
 WORKSPACE:=$(PWD)/_workspace
 BRANCH:=$(shell git branch | grep '^* ' | awk '{print $$2'})
 
-$(BINARY): 
+$(BINARY): workspace
 	git checkout project
 	make
 	git checkout $(BRANCH)
+
+workspace: $(WORKSPACE)/src/$(PACKAGE)
+
+$(WORKSPACE)/src/$(PACKAGE):
+	mkdir -p $(WORKSPACE)/src/$(PACKAGE)
+	git clone . $(WORKSPACE)/src/$(PACKAGE)
+	cp .git/config $(WORKSPACE)/src/$(PACKAGE)/.git/
+	cd $(WORKSPACE)/src/$(PACKAGE) && git checkout $(BRANCH)
+
 
 project:
 	git checkout project
