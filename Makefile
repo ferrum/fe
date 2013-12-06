@@ -10,7 +10,7 @@ BRANCH:=$(shell git branch | grep '*' | awk '{print $$2'})
 $(BINARY): project $(WORKSPACE)/src/$(PACKAGE)
 	GOPATH=$(WORKSPACE) go install $(PACKAGE)
 	cp $(WORKSPACE)/bin/$(BINARY) .
-	git checkout master
+	git checkout $(BRANCH)
 
 project:
 	git checkout project
