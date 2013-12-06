@@ -24,11 +24,8 @@ master:
 $(WORKSPACE)/src/github.com/ferrum/fe:
 	mkdir -p $(WORKSPACE)/src/$(PACKAGE)
 	git clone . $(WORKSPACE)/src/$(PACKAGE)
+	cp .git/config $(WORKSPACE)/src/$(PACKAGE)/.git/
 	cd $(WORKSPACE)/src/$(PACKAGE) && \
-	   git checkout $(BRANCH) && \
-	   git remote rename origin project && \
-	   git remote add -f origin $(REMOTE) && \
-	   git branch -u origin/$(BRANCH)
-
+	   git checkout $(BRANCH)
 clean:
 	rm -rf $(WORKSPACE) $(BINARY)
