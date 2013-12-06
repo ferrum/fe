@@ -20,15 +20,8 @@ $(WORKSPACE)/src/$(PACKAGE):
 	cp .git/config $(WORKSPACE)/src/$(PACKAGE)/.git/
 	cd $(WORKSPACE)/src/$(PACKAGE) && git checkout $(BRANCH)
 
-
-project:
-	git checkout project
-
-go1:
-	git checkout go1
-
-master:
-	git checkout master
-
 clean:
 	rm -rf $(WORKSPACE) $(BINARY)
+
+project: workspace
+	git checkout project
