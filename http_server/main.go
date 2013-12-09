@@ -10,7 +10,7 @@ import (
 )
 
 var port = flag.Int("p", 8080, "port to listen on")
-var pause = flag.String("w", "1ms", "time to wait before responding")
+var pause = flag.Duration("w", time.Nanosecond, "time to wait before responding")
 var verbose = flag.Bool("v", false, "Be verbose")
 
 type PauseHandler struct {
@@ -29,10 +29,6 @@ func (this PauseHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	flag.Parse()
-	wait, err := time.ParseDuration(*pause)
-	if err != nil {
-		log.Fatalf("illegal wait time, %s : %s", *pause, err)
-	}
 	pwd, err := os.Getwd()
 	if err != nil {
 		log.Fatalf("unable to retrieve pwd: %s", err)
@@ -40,7 +36,7 @@ func main() {
 	
 	http.Handle("/", PauseHandler { 
 		fs: http.FileServer(http.Dir(pwd)),
-		pause: wait,
+		pause: *pause,
 	})
 
 	log.Printf("Listening on %d", *port)
