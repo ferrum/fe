@@ -1,6 +1,6 @@
 # per-project info
-PACKAGE:=github.com/ferrum/fe
-BINARY:=fe 
+PACKAGE:=github.com/brianm/empire
+BINARY:=empire
 
 # shouldn't probably change between projects
 WORKSPACE:=$(PWD)/_workspace
