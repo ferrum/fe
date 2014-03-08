@@ -7,7 +7,6 @@
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
  *
-
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
@@ -17,32 +16,26 @@
 package main
 
 import (
-	"github.com/codegangsta/martini"
-	"github.com/martini-contrib/render"
+	"log"
+	"net/http"
+	"net/http/httputil"
+	"net/url"
 )
 
 func main() {
-	m := martini.Classic()
-	m.Use(render.Renderer())
-
-	m.Get("/", func(r render.Render) {
-		r.JSON(200, person{
-			Name: "World",
-			Age:  6,
-		})
-	})
-
-	m.Get("/:name", func(p martini.Params, r render.Render) {
-		r.JSON(200, person{
-			Name: p["name"],
-			Age:  39,
-		})
-	})
-
-	m.Run()
+	http.HandleFunc("/", Proxy)
+	err := http.ListenAndServe(":12345", nil)
+	if err != nil {
+		log.Fatal("ListenAndServe: ", err)
+	}
 }
 
-type person struct {
-	Name string `json:"name"`
-	Age  int    `json:"age"`
+func Proxy(rw http.ResponseWriter, req *http.Request) {
+	log.Printf("got request!")
+	url, err := url.Parse("http://127.0.0.1:4001/")
+	if err != nil {
+		log.Fatalf("Error parsing url: %s", err)
+	}
+	rp := httputil.NewSingleHostReverseProxy(url)
+	rp.ServeHTTP(rw, req)
 }
