@@ -1,5 +1,5 @@
 # per-project info
-PACKAGE:=github.com/brianm/fe
+PACKAGE:=github.com/ferrum/fe
 BINARY:=fe
 
 # shouldn't probably change between projects
