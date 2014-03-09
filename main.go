@@ -32,7 +32,7 @@ func main() {
 
 func Proxy(rw http.ResponseWriter, req *http.Request) {
 	log.Printf("got request!")
-	url, err := url.Parse("http://127.0.0.1:4001/")
+	url, err := url.Parse("http://127.0.0.1:12346/v2/keys/")
 	if err != nil {
 		log.Fatalf("Error parsing url: %s", err)
 	}
